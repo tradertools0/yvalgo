@@ -1,514 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YV Algo — Algorithmic Trading Systems for MT4, MT5 & TradingView</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
-    <meta name="description"
-        content="YV Algo — Algorithmic Trading Development, Market Research and Data-Driven Validation.">
+  :root{
+    --bg: #0A0E14;
+    --panel: #121722;
+    --panel-2: #171D2B;
+    --line: #232B3B;
+    --text: #E7EAF0;
+    --muted: #8C96AA;
+    --up: #21D9A6;
+    --down: #FF7A54;
+    --gold: #E8B85C;
+  }
 
-    <meta name="theme-color" content="#0b1220">
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
 
-    <title>YV Algo | Algorithmic Trading Development</title>
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
 
-    <link rel="stylesheet" href="style.css">
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,14,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-family:'Space Grotesk';font-weight:700;font-size:19px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--up);box-shadow:0 0 8px var(--up);}
+  .navlinks{display:flex;gap:32px;font-size:14.5px;color:var(--muted);}
+  .navlinks a:hover{color:var(--text);}
+  .navcta{
+    background:var(--up);color:#06110D;padding:9px 18px;border-radius:6px;
+    font-weight:600;font-size:14px;
+  }
+  @media(max-width:760px){.navlinks{display:none;}}
+
+  /* ---------- TICKER TAPE ---------- */
+  .ticker-strip{
+    border-bottom:1px solid var(--line);
+    background:var(--panel);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:9px 0;
+  }
+  .ticker-track{
+    display:inline-flex;
+    animation:scrollTicker 32s linear infinite;
+  }
+  .ticker-item{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:0 26px;font-size:13px;
+    border-right:1px solid var(--line);
+  }
+  .ticker-item .sym{font-family:'IBM Plex Mono';color:var(--text);}
+  .ticker-item .up{color:var(--up);}
+  .ticker-item .down{color:var(--down);}
+  @keyframes scrollTicker{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 70px;
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media(max-width:900px){.hero{grid-template-columns:1fr;padding:52px 0 40px;}}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono';font-size:13px;color:var(--up);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(34px,5vw,54px);
+    line-height:1.08;
+    margin-bottom:22px;
+  }
+  .hero p.lead{
+    font-size:17px;color:var(--muted);max-width:52ch;margin-bottom:30px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px;}
+  .btn-primary{
+    background:var(--up);color:#06110D;padding:13px 24px;border-radius:6px;
+    font-weight:600;font-size:15px;
+    box-shadow:0 0 0 rgba(33,217,166,0.4);
+    transition:transform .15s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(33,217,166,0.25);}
+  .btn-secondary{
+    border:1px solid var(--line);color:var(--text);padding:13px 24px;border-radius:6px;
+    font-weight:500;font-size:15px;transition:border-color .15s ease, background .15s ease;
+  }
+  .btn-secondary:hover{border-color:#3A4459;background:var(--panel);}
+
+  .hero-stats{display:flex;gap:36px;}
+  .hero-stats div{border-left:2px solid var(--line);padding-left:14px;}
+  .hero-stats .num{font-family:'Space Grotesk';font-size:26px;font-weight:700;}
+  .hero-stats .lbl{font-size:12.5px;color:var(--muted);margin-top:2px;}
+
+  /* chart panel */
+  .chart-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:20px 18px 16px;
+  }
+  .chart-head{
+    display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;
+  }
+  .chart-head .pair{font-family:'IBM Plex Mono';font-size:14px;}
+  .chart-head .price{font-family:'IBM Plex Mono';font-size:14px;color:var(--up);}
+  #candleSvg{width:100%;height:auto;}
+  .candle-body, .candle-wick{opacity:0;transform:scaleY(0);transform-origin:bottom;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:76px 0;border-top:1px solid var(--line);}
+  .section-tag{
+    font-family:'IBM Plex Mono';font-size:12.5px;color:var(--gold);margin-bottom:12px;
+  }
+  .section-title{font-size:clamp(26px,3vw,36px);max-width:20ch;margin-bottom:14px;}
+  .section-sub{color:var(--muted);max-width:56ch;font-size:15.5px;margin-bottom:44px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+  @media(max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--muted);margin-bottom:16px;font-size:15.5px;}
+  .platform-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+  .platform-chip{
+    border:1px solid var(--line);padding:8px 14px;border-radius:6px;
+    font-family:'IBM Plex Mono';font-size:13px;color:var(--text);
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  @media(max-width:800px){.services-grid{grid-template-columns:1fr;}}
+  .service-card{background:var(--panel);padding:30px 26px;}
+  .service-card h3{font-size:17.5px;margin-bottom:10px;}
+  .service-card p{color:var(--muted);font-size:14.5px;}
+  .service-icon{width:34px;height:34px;margin-bottom:18px;color:var(--up);}
+
+  /* ---------- PROCESS ---------- */
+  .process-list{display:flex;flex-direction:column;}
+  .process-item{
+    display:grid;grid-template-columns:64px 1fr;gap:22px;
+    padding:26px 0;border-top:1px solid var(--line);
+  }
+  .process-item:last-child{border-bottom:1px solid var(--line);}
+  .process-num{font-family:'IBM Plex Mono';font-size:14px;color:var(--muted);padding-top:3px;}
+  .process-item h3{font-size:18px;margin-bottom:8px;}
+  .process-item p{color:var(--muted);font-size:15px;max-width:60ch;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  @media(max-width:800px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-line{
+    display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid var(--line);
+  }
+  .contact-line:last-child{border-bottom:1px solid var(--line);}
+  .contact-line .k{color:var(--muted);font-size:13.5px;width:90px;}
+  .contact-line .v{font-family:'IBM Plex Mono';font-size:15px;}
+
+  form{display:flex;flex-direction:column;gap:14px;}
+  input,textarea,select{
+    background:var(--panel);border:1px solid var(--line);border-radius:6px;
+    padding:12px 14px;color:var(--text);font-family:'Inter';font-size:14.5px;
+    outline:none;transition:border-color .15s ease;
+  }
+  input:focus,textarea:focus,select:focus{border-color:var(--up);}
+  textarea{resize:vertical;min-height:90px;}
+  form button{
+    background:var(--up);color:#06110D;border:none;border-radius:6px;
+    padding:13px;font-weight:600;font-size:15px;cursor:pointer;margin-top:4px;
+  }
+  .form-note{font-size:12.5px;color:var(--muted);margin-top:2px;}
+
+  footer{
+    border-top:1px solid var(--line);padding:30px 0;
+    display:flex;justify-content:space-between;align-items:center;
+    color:var(--muted);font-size:13.5px;flex-wrap:wrap;gap:10px;
+  }
+</style>
 </head>
-
 <body>
 
-    <!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo"><span class="dot"></span>YV ALGO</div>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="navcta">Start a project</a>
+    </nav>
+  </div>
+  <div class="ticker-strip">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+</header>
 
-    <header class="site-header">
+<div class="wrap">
+  <section class="hero" style="border-top:none;">
+    <div>
+      <div class="eyebrow">MT4 · MT5 · TRADINGVIEW DEVELOPER</div>
+      <h1>Algo strategies and indicators, built and backtested to run unattended.</h1>
+      <p class="lead">15 years developing algorithmic trading systems for forex, gold and the Indian market — from a rough idea to a live, rule-based EA or indicator.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Discuss your idea</a>
+        <a href="#services" class="btn-secondary">See what I build</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num">15</div><div class="lbl">Years in EA<br>development</div></div>
+        <div><div class="num">MT4 / MT5</div><div class="lbl">Native EA &amp;<br>indicator coding</div></div>
+        <div><div class="num">FX + IN</div><div class="lbl">Forex &amp; Indian<br>market systems</div></div>
+      </div>
+    </div>
 
-        <div class="container header-inner">
+    <div class="chart-card">
+      <div class="chart-head">
+        <span class="pair">XAUUSD · H1</span>
+        <span class="price">2,417.86</span>
+      </div>
+      <svg id="candleSvg" viewBox="0 0 460 240" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+  </section>
+</div>
 
-            <a href="#home" class="logo">
-                <span class="logo-yv">YV</span>
-                <span class="logo-algo">ALGO</span>
-            </a>
-
-            <nav class="navigation">
-                <a href="#approach">Approach</a>
-                <a href="#statistics">Statistics</a>
-                <a href="#development">Current Research</a>
-                <a href="#connect">Connect</a>
-            </nav>
-
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="section-tag">ABOUT</div>
+        <h2 class="section-title">15 years turning trading ideas into working code.</h2>
+      </div>
+      <div>
+        <p>I develop Expert Advisors and custom indicators for MT4 and MT5, and Pine Script strategies for TradingView. Work spans forex majors, gold (XAUUSD) and Indian market instruments — built from a strategy brief, an indicator concept, or a rough idea you want tested.</p>
+        <p>Every system is coded to a defined rule set, backtested against historical data, and handed over with the logic documented — so you know exactly what it does and why.</p>
+        <div class="platform-row">
+          <span class="platform-chip">MetaTrader 4</span>
+          <span class="platform-chip">MetaTrader 5</span>
+          <span class="platform-chip">TradingView / Pine</span>
+          <span class="platform-chip">Forex</span>
+          <span class="platform-chip">XAUUSD</span>
+          <span class="platform-chip">Indian Market</span>
         </div>
-
-    </header>
-
-
-    <!-- ================= MAIN ================= -->
-
-    <main>
-
-        <!-- ================= HERO ================= -->
-
-        <section id="home" class="hero">
-
-            <div class="container hero-content">
-
-                <div class="hero-text">
-
-                    <p class="eyebrow">
-                        ALGORITHMIC DEVELOPMENT
-                    </p>
-
-                    <h1>
-                        Building
-                        <span>algorithmic</span>
-                        trading systems.
-                    </h1>
-
-                    <p class="hero-description">
-                        Research-driven development focused on
-                        market behaviour, systematic logic and execution.
-                    </p>
-
-                    <div class="hero-buttons">
-
-                        <a href="#statistics" class="btn btn-primary">
-                            View Statistics
-                        </a>
-
-                        <a href="#development" class="btn btn-secondary">
-                            Current Research
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <!-- HERO DATA VISUAL -->
-
-                <div class="hero-visual">
-
-                    <div class="market-panel">
-
-                        <div class="market-panel-header">
-                            <span>YV / RESEARCH</span>
-                            <span>SYSTEM STUDY</span>
-                        </div>
-
-                        <div class="chart-area">
-
-                            <div class="chart-grid"></div>
-
-                            <div class="chart-line"></div>
-
-                            <div class="chart-point point-1"></div>
-                            <div class="chart-point point-2"></div>
-                            <div class="chart-point point-3"></div>
-
-                        </div>
-
-                        <div class="market-panel-footer">
-                            <span>RESEARCH</span>
-                            <span>→</span>
-                            <span>VALIDATION</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= APPROACH ================= -->
-
-        <section id="approach" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <p class="eyebrow">
-                        OUR APPROACH
-                    </p>
-
-                    <h2>
-                        Research first.
-                        <br>
-                        Logic second.
-                    </h2>
-
-                    <p class="section-description">
-                        Every system begins as a market hypothesis
-                        and moves through structured research,
-                        development and validation.
-                    </p>
-
-                </div>
-
-
-                <div class="process-grid">
-
-                    <article class="process-card">
-
-                        <span class="process-number">01</span>
-
-                        <h3>Research</h3>
-
-                        <p>
-                            Study market behaviour, structure,
-                            volatility and execution conditions.
-                        </p>
-
-                    </article>
-
-
-                    <article class="process-card">
-
-                        <span class="process-number">02</span>
-
-                        <h3>Develop</h3>
-
-                        <p>
-                            Convert research observations into
-                            systematic and testable trading logic.
-                        </p>
-
-                    </article>
-
-
-                    <article class="process-card">
-
-                        <span class="process-number">03</span>
-
-                        <h3>Test</h3>
-
-                        <p>
-                            Run controlled historical and
-                            simulated tests using market data.
-                        </p>
-
-                    </article>
-
-
-                    <article class="process-card">
-
-                        <span class="process-number">04</span>
-
-                        <h3>Validate</h3>
-
-                        <p>
-                            Compare expected system behaviour
-                            with observed market behaviour.
-                        </p>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= CURRENT RESEARCH ================= -->
-
-        <section id="development" class="section">
-
-            <div class="container">
-
-                <div class="development-card">
-
-                    <div class="development-content">
-
-                        <p class="eyebrow">
-                            CURRENT RESEARCH
-                        </p>
-
-                        <h2>
-                            A new algorithmic trading
-                            idea is under research.
-                        </h2>
-
-                        <p>
-                            YV Algo is currently studying and developing
-                            a systematic trading idea focused on XAUUSD.
-                            The research examines market behaviour,
-                            systematic logic and execution conditions
-                            before any final system is considered.
-                        </p>
-
-                        <p class="research-status">
-                            This is active research, not a released system.
-                            Research, testing and validation are ongoing.
-                        </p>
-
-                    </div>
-
-
-                    <div class="project-details">
-
-                        <div class="project-detail">
-
-                            <span>MARKET</span>
-
-                            <strong>
-                                XAUUSD
-                            </strong>
-
-                        </div>
-
-
-                        <div class="project-detail">
-
-                            <span>TYPE</span>
-
-                            <strong>
-                                ALGORITHMIC SYSTEM
-                            </strong>
-
-                        </div>
-
-
-                        <div class="project-detail">
-
-                            <span>STATUS</span>
-
-                            <strong>
-                                RESEARCH &amp; DEVELOPMENT
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= STATISTICS / EVIDENCE ================= -->
-
-        <section id="statistics" class="section statistics-section">
-
-            <div class="container">
-
-                <div class="section-heading statistics-heading">
-
-                    <div>
-
-                        <p class="eyebrow">
-                            RESEARCH / EVIDENCE
-                        </p>
-
-                        <h2>
-                            Data before claims.
-                        </h2>
-
-                    </div>
-
-                    <p class="section-description">
-                        A small set of verified research information,
-                        presented without unsupported performance claims.
-                    </p>
-
-                </div>
-
-
-                <div class="statistics-grid">
-
-                    <div class="stat-card">
-
-                        <strong>
-                            15<span>+</span>
-                        </strong>
-
-                        <p>
-                            Years of market experience
-                        </p>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <strong>
-                            04<span>+</span>
-                        </strong>
-
-                        <p>
-                            Months of current research
-                        </p>
-
-                    </div>
-
-
-                    <div class="stat-card methodology-card">
-
-                        <strong>
-                            R&amp;D
-                        </strong>
-
-                        <p>
-                            Research-led development
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="methodology-note">
-
-                    <span class="methodology-label">
-                        METHODOLOGY
-                    </span>
-
-                    <p>
-                        Every idea is logged, dated, and tracked
-                        from hypothesis to validation.
-                    </p>
-
-                </div>
-
-
-                <p class="disclaimer">
-                    Statistics are presented for research and
-                    informational purposes. Historical or simulated
-                    performance does not guarantee future results.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= RESEARCH PHILOSOPHY ================= -->
-
-        <section id="philosophy" class="section research-section">
-
-            <div class="container">
-
-                <div class="research-grid">
-
-                    <div>
-
-                        <p class="eyebrow">
-                            RESEARCH PHILOSOPHY
-                        </p>
-
-                        <h2>
-                            Experience informs the idea.
-                            Data tests it.
-                        </h2>
-
-                    </div>
-
-
-                    <div>
-
-                        <p>
-                            YV Algo is built around a research-first
-                            approach to algorithmic development, combining
-                            market experience with systematic testing and
-                            validation.
-                        </p>
-
-                        <p>
-                            The objective is not to make claims before
-                            the evidence exists. Ideas are studied,
-                            tested and refined as the research progresses.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= CONNECT ================= -->
-
-        <section id="connect" class="section connect-section">
-
-            <div class="container">
-
-                <div class="connect-card">
-
-                    <p class="eyebrow">
-                        FOLLOW YV ALGO
-                    </p>
-
-                    <h2>
-                        Follow the research journey.
-                    </h2>
-
-                    <p>
-                        Development updates, research notes and
-                        selected market statistics will be shared
-                        as the work progresses.
-                    </p>
-
-
-                    <div class="social-links">
-
-                        <a
-                            href="https://github.com/tradertools0/yvalgo"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="social-link"
-                        >
-                            GitHub
-                            <span>↗</span>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer class="site-footer">
-
-        <div class="container footer-inner">
-
-            <div class="footer-brand">
-
-                <strong>
-                    YV ALGO
-                </strong>
-
-                <span>
-                    Algorithmic Trading Development
-                </span>
-
-            </div>
-
-
-            <div class="footer-copy">
-
-                © <span id="year"></span> YV Algo
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
-    <script src="script.js"></script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-tag">SERVICES</div>
+    <h2 class="section-title">What I build</h2>
+    <p class="section-sub">Custom development across the full toolchain — pick one, or bring an idea that doesn't fit a category yet.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l5-5 4 4 8-9"/><path d="M15 7h5v5"/></svg>
+        <h3>Expert Advisor development</h3>
+        <p>Custom EAs for MT4/MT5, built from your entry, exit and risk rules and coded to execute exactly as specified.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V9M10 19V5M16 19v-7M22 19v-3"/></svg>
+        <h3>Custom indicator coding</h3>
+        <p>Indicators built to your own logic — for MT4, MT5 or TradingView — when nothing off-the-shelf shows what you need.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+        <h3>Strategy design &amp; backtesting</h3>
+        <p>Take a trading idea from concept to a tested rule set, with historical performance you can review before going live.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h3>Forex &amp; gold systems</h3>
+        <p>Algo strategies for forex majors and XAUUSD, drawing on systems already running in live market conditions.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <h3>Indian market strategies</h3>
+        <p>Algo and indicator work adapted to Indian market instruments and trading hours.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+        <h3>Rebuild or debug existing EAs</h3>
+        <p>Fix, optimise or rebuild an existing EA or indicator that isn't behaving the way it should.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-tag">PROCESS</div>
+    <h2 class="section-title">From idea to a running system</h2>
+    <p class="section-sub">A fixed sequence for every build, so you always know what stage a project is at.</p>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num mono">01</div>
+        <div><h3>Define the rules</h3><p>We turn your idea — or an existing strategy — into a precise, unambiguous rule set: entries, exits, position sizing, filters.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="process-num mono">02</div>
+        <div><h3>Build the EA or indicator</h3><p>Coded natively in MQL4, MQL5 or Pine Script, matching the platform your strategy needs to run on.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="process-num mono">03</div>
+        <div><h3>Backtest &amp; optimise</h3><p>Run against historical data across market conditions, with results reviewed together before anything goes live.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="process-num mono">04</div>
+        <div><h3>Deploy &amp; hand over</h3><p>Delivered with the logic documented, ready to run on your account or chart, with support for any adjustments.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-tag">CONTACT</div>
+    <h2 class="section-title">Have an idea to build or test?</h2>
+    <p class="section-sub">Send the details — platform, market, and what the strategy or indicator should do — and I'll get back to you.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-line"><span class="k">Email</span><span class="v">contact@yvalgo.demo</span></div>
+        <div class="contact-line"><span class="k">Phone</span><span class="v">+91 98765 43210</span></div>
+        <div class="contact-line"><span class="k">Hours</span><span class="v mono" style="font-size:14px;">Mon–Sat, 10:00–19:00 IST</span></div>
+        <p class="form-note" style="margin-top:18px;">Demo contact details shown above — swap in your real email and number before publishing.</p>
+      </div>
+      <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Sent — thank you';">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <select>
+          <option>Platform: MT4</option>
+          <option>Platform: MT5</option>
+          <option>Platform: TradingView</option>
+        </select>
+        <textarea placeholder="Tell me about the strategy or indicator idea" required></textarea>
+        <button type="submit">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div>© 2026 YV Algo. All rights reserved.</div>
+  <div>Built for MT4, MT5 &amp; TradingView development.</div>
+</footer>
+
+<script>
+  // Ticker tape content
+  const pairs = [
+    {sym:'XAUUSD', chg:'+0.62%', dir:'up'},
+    {sym:'EURUSD', chg:'-0.14%', dir:'down'},
+    {sym:'GBPUSD', chg:'+0.08%', dir:'up'},
+    {sym:'USDJPY', chg:'-0.22%', dir:'down'},
+    {sym:'NIFTY 50', chg:'+0.41%', dir:'up'},
+    {sym:'BANKNIFTY', chg:'+0.55%', dir:'up'},
+    {sym:'USDCAD', chg:'-0.09%', dir:'down'},
+    {sym:'AUDUSD', chg:'+0.17%', dir:'up'},
+  ];
+  const track = document.getElementById('tickerTrack');
+  function buildTicker(){
+    let html = '';
+    for(let rep=0; rep<2; rep++){
+      pairs.forEach(p=>{
+        html += `<span class="ticker-item"><span class="sym">${p.sym}</span><span class="${p.dir}">${p.chg}</span></span>`;
+      });
+    }
+    track.innerHTML = html;
+  }
+  buildTicker();
+
+  // Candlestick hero animation — deterministic pseudo-random walk
+  (function(){
+    const svg = document.getElementById('candleSvg');
+    const W = 460, H = 240, PAD = 12;
+    const n = 22;
+    let seed = 42;
+    function rand(){ seed = (seed*9301+49297)%233280; return seed/233280; }
+
+    let price = 120;
+    const candles = [];
+    for(let i=0;i<n;i++){
+      const open = price;
+      const move = (rand()-0.46) * 26;
+      const close = Math.max(20, Math.min(220, open + move));
+      const high = Math.max(open, close) + rand()*10;
+      const low = Math.min(open, close) - rand()*10;
+      candles.push({open, close, high, low});
+      price = close;
+    }
+    const cw = (W - PAD*2) / n;
+    const maxV = Math.max(...candles.map(c=>c.high)) + 6;
+    const minV = Math.min(...candles.map(c=>c.low)) - 6;
+    const scaleY = v => H - PAD - ( (v-minV) / (maxV-minV) ) * (H - PAD*2);
+
+    let svgMarkup = '';
+    // gridlines
+    for(let g=0; g<4; g++){
+      const y = PAD + g*( (H-PAD*2)/3 );
+      svgMarkup += `<line x1="${PAD}" y1="${y}" x2="${W-PAD}" y2="${y}" stroke="#1C2333" stroke-width="1"/>`;
+    }
+
+    candles.forEach((c,i)=>{
+      const x = PAD + i*cw + cw*0.2;
+      const bw = cw*0.6;
+      const up = c.close >= c.open;
+      const color = up ? 'var(--up)' : 'var(--down)';
+      const yOpen = scaleY(c.open), yClose = scaleY(c.close);
+      const bodyTop = Math.min(yOpen,yClose);
+      const bodyH = Math.max(2, Math.abs(yClose-yOpen));
+      const yHigh = scaleY(c.high), yLow = scaleY(c.low);
+      const cx = x + bw/2;
+      const delay = (i*0.045).toFixed(2);
+
+      svgMarkup += `<line class="candle-wick" x1="${cx}" y1="${yHigh}" x2="${cx}" y2="${yLow}" stroke="${color}" stroke-width="1.4" style="animation: growWick .4s ease forwards ${delay}s;"/>`;
+      svgMarkup += `<rect class="candle-body" x="${x}" y="${bodyTop}" width="${bw}" height="${bodyH}" fill="${color}" rx="1" style="animation: growBody .4s ease forwards ${delay}s;"/>`;
+    });
+
+    svg.innerHTML = svgMarkup;
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes growBody { to { opacity:1; transform:scaleY(1); } }
+      @keyframes growWick { to { opacity:1; } }
+    `;
+    document.head.appendChild(style);
+  })();
+</script>
 
 </body>
-
 </html>
