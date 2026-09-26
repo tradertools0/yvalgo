@@ -27,6 +27,15 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
 .evidence-item p{padding:10px 4px 2px;color:var(--muted);font:11px "IBM Plex Mono"}
 @media(max-width:850px){.evidence-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.evidence-grid{grid-template-columns:1fr}}
+
+/* Semantic text accents */
+.positive,.positive *{color:#35d07f !important}
+.negative,.negative *{color:#ff5b5b !important}
+.alert,.alert *{color:#ff5b5b !important}
+.neutral,.neutral *{color:#f2f5f8 !important}
+.card-positive h3,.card-positive span{color:#35d07f !important}
+.card-negative h3,.card-negative span{color:#ff5b5b !important}
+.card-alert h3,.card-alert span{color:#ff5b5b !important}
 </style>
 </head>
 <body>
@@ -66,7 +75,7 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
   <div class="slide-no">03 / 28</div>
   <h2>What YV Builds</h2>
   <div class="cards">
-    <article><span>01</span><h3>Strategy / EA Families</h3><p>Trend, breakout, mean reversion, momentum, SMC, QQE and market-behaviour variants.</p></article>
+    <article><span>01</span><h3>Strategy / EA Families</h3><p>Trend, breakout, mean reversion, momentum, SMC, Oscillator Signal and market-behaviour variants.</p></article>
     <article><span>02</span><h3>Risk Engines</h3><p>Position sizing, SL/TP, drawdown controls, recovery behaviour and exposure constraints.</p></article>
     <article><span>03</span><h3>Execution Layer</h3><p>MT5/MQL5, broker execution behaviour, spread/session handling and state management.</p></article>
   </div>
@@ -112,9 +121,9 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
   <div class="slide-no">08 / 28</div>
   <h2>Selected Tester Metrics</h2>
   <div class="cards">
-    <article><span>01</span><h3>XAUUSD H1</h3><p>+2034.13 net profit · PF 2.16 · 324 trades · Equity DD 27.76%.</p></article>
-    <article><span>02</span><h3>XAUUSD M5</h3><p>+2383.73 net profit · PF 1.38 · 866 trades · Equity DD 33.00%.</p></article>
-    <article><span>03</span><h3>XAUUSD M15</h3><p>+972.81 net profit · PF 1.11 · 1317 trades · Equity DD 25.18%.</p></article>
+    <article class="card-positive"><span>01</span><h3>XAUUSD H1</h3><p><span class="positive">+2034.13 net profit</span> · PF 2.16 · 324 trades · <span class="negative">Equity DD 27.76%</span>.</p></article>
+    <article class="card-positive"><span>02</span><h3>XAUUSD M5</h3><p><span class="positive">+2383.73 net profit</span> · PF 1.38 · 866 trades · <span class="negative">Equity DD 33.00%</span>.</p></article>
+    <article class="card-positive"><span>03</span><h3>XAUUSD M15</h3><p><span class="positive">+972.81 net profit</span> · PF 1.11 · 1317 trades · <span class="negative">Equity DD 25.18%</span>.</p></article>
   </div>
 </section>
 <section class="slide" id="s09">
@@ -150,7 +159,7 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
   <div class="cards">
     <article><span>01</span><h3>Chandelier / Trend Flip</h3><p>Trend-state changes, ATR bands and directional transitions.</p></article>
     <article><span>02</span><h3>EMA / VWAP Pullback</h3><p>Trend alignment with pullback / execution conditions.</p></article>
-    <article><span>03</span><h3>QQE / Oscillator</h3><p>Signal-driven execution with fixed-risk experiments.</p></article>
+    <article><span>03</span><h3>Oscillator Signal / Oscillator</h3><p>Signal-driven execution with fixed-risk experiments.</p></article>
   </div>
 </section>
 <section class="slide" id="s13">
@@ -300,3 +309,9 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
 </main>
 <footer><div class="wrap footer"><div><strong>YV</strong><br>Quantitative Research · Algorithmic Trading · Execution Engineering</div><div>© 2026 YV · Evidence-led technical development.</div></div></footer>
 </body></html>
+
+<style>
+article h3{color:#f2f5f8}
+article span{color:#4f8cff}
+article p{color:var(--muted)}
+</style>
