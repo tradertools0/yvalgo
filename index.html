@@ -20,12 +20,19 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
 .footer{padding:45px 0;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px}.footer strong{font:600 15px Orbitron;color:white}
 @media(max-width:850px){.nav{display:none}.cards{grid-template-columns:1fr}.hero{min-height:auto;padding:75px 0}}
 @media(max-width:600px){.wrap{width:min(calc(100% - 32px),var(--max))}h1{font-size:42px}.slide{padding:60px 0}.footer{flex-direction:column}}
+
+.evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.evidence-item{background:var(--panel);border:1px solid var(--line);padding:10px;overflow:hidden}
+.evidence-item img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#05080d}
+.evidence-item p{padding:10px 4px 2px;color:var(--muted);font:11px "IBM Plex Mono"}
+@media(max-width:850px){.evidence-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.evidence-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header><div class="wrap"><nav>
 <a class="brand" href="#">YV <i>ALGO</i></a>
-<div class="nav"><a href="#s01">PROFILE</a><a href="#s03">CAPABILITY</a><a href="#s06">EVIDENCE</a><a href="#s11">RESEARCH</a><a href="#s16">VALIDATION</a><a href="#s20">BROKER</a></div>
+<div class="nav"><a href="#s01">PROFILE</a><a href="#s03">CAPABILITY</a><a href="#evidence-library">EVIDENCE</a><a href="#s11">RESEARCH</a><a href="#s16">VALIDATION</a><a href="#s20">BROKER</a></div>
 <a class="navbtn" href="#s28">TECHNICAL DISCUSSION</a>
 </nav></div></header>
 <main>
@@ -91,6 +98,30 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
     <article><span>03</span><h3>Behaviour</h3><p>Low-volatility pressure, compression → expansion, trend transition and volatility response.</p></article>
   </div>
 </section>
+
+<section class="slide" id="evidence-library">
+  <div class="slide-no">EVIDENCE LIBRARY</div>
+  <h2>Authentic Backtest & Research Evidence</h2>
+  <div class="note">Selected screenshots and reports from the YV research archive. Images are presented as evidence of testing and development, not as a promise of future performance.</div>
+  <div class="evidence-grid">
+    <a class="evidence-item" href="assets/evidence/evidence-01.jpg" target="_blank"><img src="assets/evidence/evidence-01.jpg" alt="YV evidence 01"><p>EVIDENCE 01</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-02.jpg" target="_blank"><img src="assets/evidence/evidence-02.jpg" alt="YV evidence 02"><p>EVIDENCE 02</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-03.jpg" target="_blank"><img src="assets/evidence/evidence-03.jpg" alt="YV evidence 03"><p>EVIDENCE 03</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-04.jpg" target="_blank"><img src="assets/evidence/evidence-04.jpg" alt="YV evidence 04"><p>EVIDENCE 04</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-05.jpg" target="_blank"><img src="assets/evidence/evidence-05.jpg" alt="YV evidence 05"><p>EVIDENCE 05</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-06.jpg" target="_blank"><img src="assets/evidence/evidence-06.jpg" alt="YV evidence 06"><p>EVIDENCE 06</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-07.jpg" target="_blank"><img src="assets/evidence/evidence-07.jpg" alt="YV evidence 07"><p>EVIDENCE 07</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-08.jpg" target="_blank"><img src="assets/evidence/evidence-08.jpg" alt="YV evidence 08"><p>EVIDENCE 08</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-09.jpg" target="_blank"><img src="assets/evidence/evidence-09.jpg" alt="YV evidence 09"><p>EVIDENCE 09</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-10.jpg" target="_blank"><img src="assets/evidence/evidence-10.jpg" alt="YV evidence 10"><p>EVIDENCE 10</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-11.jpg" target="_blank"><img src="assets/evidence/evidence-11.jpg" alt="YV evidence 11"><p>EVIDENCE 11</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-12.jpg" target="_blank"><img src="assets/evidence/evidence-12.jpg" alt="YV evidence 12"><p>EVIDENCE 12</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-13.jpg" target="_blank"><img src="assets/evidence/evidence-13.jpg" alt="YV evidence 13"><p>EVIDENCE 13</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-14.jpg" target="_blank"><img src="assets/evidence/evidence-14.jpg" alt="YV evidence 14"><p>EVIDENCE 14</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-15.jpg" target="_blank"><img src="assets/evidence/evidence-15.jpg" alt="YV evidence 15"><p>EVIDENCE 15</p></a>
+  </div>
+</section>
+
 <section class="slide" id="s07">
   <div class="slide-no">07 / 28</div>
   <h2>Failure / Weak-Candidate Evidence</h2>
