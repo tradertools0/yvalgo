@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#070b12;--panel:#0d131d;--line:#223047;--text:#f2f5f8;--muted:#8f9bad;--blue:#0955ce;--teal:#04978f;--gold:#04978f;--max:1180px}
+:root{--bg:#070b12;--panel:#0d131d;--line:#223047;--text:#f2f5f8;--muted:#8f9bad;--blue:#4f8cff;--gold:#e8b85c;--max:1180px}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.6}a{color:inherit;text-decoration:none}
-.wrap{width:min(calc(100% - 48px),var(--max));margin:auto}.brand{font:600 18px Orbitron;letter-spacing:.12em}.brand span{color:var(--blue)}.brand i{color:var(--teal);font-style:normal}.slide-no{display:none}
+.wrap{width:min(calc(100% - 48px),var(--max));margin:auto}.brand{font:600 18px Orbitron;letter-spacing:.12em}.brand i{color:var(--blue);font-style:normal}
 header{position:sticky;top:0;z-index:10;background:rgba(7,11,18,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 nav{min-height:72px;display:flex;align-items:center;justify-content:space-between}.nav{display:flex;gap:22px;color:var(--muted);font:11px "IBM Plex Mono"}.nav a:hover{color:white}.navbtn{border:1px solid var(--blue);color:#79a6ff;padding:9px 13px;font:11px "IBM Plex Mono"}
 .hero{padding:100px 0 90px;border-bottom:1px solid var(--line);min-height:88vh;display:flex;align-items:center}.kicker{color:var(--blue);font:11px "IBM Plex Mono";letter-spacing:.14em;margin-bottom:22px}
@@ -28,80 +28,47 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
 @media(max-width:850px){.evidence-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.evidence-grid{grid-template-columns:1fr}}
 
-/* Semantic text accents */
-.positive,.positive *{color:#35d07f !important}
-.negative,.negative *{color:#ff5b5b !important}
-.alert,.alert *{color:#ff5b5b !important}
-.neutral,.neutral *{color:#f2f5f8 !important}
-.card-positive h3,.card-positive span{color:#35d07f !important}
-.card-negative h3,.card-negative span{color:#ff5b5b !important}
-.card-alert h3,.card-alert span{color:#ff5b5b !important}
-
-/* YV Launch Countdown — home hero only */
-:root{
-  --yv-off:#f6f3ea;
-  --yv-blue:#2463d4;
-  --yv-red:#e64b4b;
-  --yv-green:#28a56a;
-  --yv-yellow:#e4b93f;
-}
+/* YV Launch Countdown — hero only */
+:root{--yv-off:#f6f3ea;--yv-blue:#2463d4;--yv-red:#e64b4b;--yv-green:#28a56a;--yv-yellow:#e4b93f}
 body{background:var(--yv-off);color:#182230}
 header{background:rgba(246,243,234,.94);border-bottom:1px solid rgba(36,99,212,.16)}
 .hero{background:var(--yv-off);position:relative;overflow:hidden;min-height:88vh}
-.hero .wrap{width:min(calc(100% - 48px),var(--max));}
-.launch-wrap{min-height:64vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
+.launch-wrap{min-height:64vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .launch-kicker{font:500 11px "IBM Plex Mono";letter-spacing:.24em;color:var(--yv-blue);margin-bottom:18px}
 .launch-title{font:600 clamp(42px,8vw,88px) Orbitron;line-height:.98;letter-spacing:.06em;text-transform:uppercase;color:#182230}
 .launch-title .soon{color:var(--yv-red)}
 .launch-date{margin-top:18px;font:500 12px "IBM Plex Mono";letter-spacing:.22em;color:#596779}
 .countdown{display:grid;grid-template-columns:repeat(4,minmax(78px,120px));gap:12px;margin-top:34px}
 .time-box{background:rgba(255,255,255,.62);border:1px solid rgba(36,99,212,.20);border-top:3px solid var(--yv-blue);padding:16px 10px 12px;box-shadow:0 12px 30px rgba(31,52,82,.08)}
-.time-box:nth-child(2){border-top-color:var(--yv-green)}
-.time-box:nth-child(3){border-top-color:var(--yv-yellow)}
-.time-box:nth-child(4){border-top-color:var(--yv-red)}
-.time-value{font:600 clamp(28px,5vw,44px) "IBM Plex Mono";line-height:1;color:#182230}
-.time-label{margin-top:8px;font:500 9px "IBM Plex Mono";letter-spacing:.16em;color:#728096}
-.launch-status{margin-top:25px;display:inline-flex;align-items:center;gap:9px;font:500 10px "IBM Plex Mono";letter-spacing:.12em;color:#526173}
-.status-dot{width:7px;height:7px;border-radius:50%;background:var(--yv-green);box-shadow:0 0 0 5px rgba(40,165,106,.10)}
-.launch-line{width:min(420px,75%);height:1px;background:linear-gradient(90deg,transparent,var(--yv-blue),var(--yv-yellow),var(--yv-red),transparent);margin-top:30px;opacity:.7}
-.hero-accent{position:absolute;inset:auto 0 0;height:5px;background:linear-gradient(90deg,var(--yv-blue) 0 25%,var(--yv-red) 25% 50%,var(--yv-green) 50% 75%,var(--yv-yellow) 75% 100%);opacity:.9}
-@media(max-width:600px){
-  .countdown{grid-template-columns:repeat(2,minmax(90px,1fr));width:min(360px,100%)}
-  .launch-wrap{min-height:68vh}
-}
-
+.time-box:nth-child(2){border-top-color:var(--yv-green)}.time-box:nth-child(3){border-top-color:var(--yv-yellow)}.time-box:nth-child(4){border-top-color:var(--yv-red)}
+.time-value{font:600 clamp(28px,5vw,44px) "IBM Plex Mono";color:#182230}.time-label{margin-top:4px;font:500 9px "IBM Plex Mono";letter-spacing:.16em;color:#6a7685}
+.launch-status{margin-top:24px;font:500 10px "IBM Plex Mono";letter-spacing:.16em;color:#596779;display:flex;align-items:center;gap:8px}.status-dot{width:7px;height:7px;border-radius:50%;background:var(--yv-green);box-shadow:0 0 0 5px rgba(40,165,106,.10)}
+.launch-line{width:min(420px,70vw);height:2px;margin-top:22px;background:linear-gradient(90deg,var(--yv-blue),var(--yv-green),var(--yv-yellow),var(--yv-red))}
+.hero-accent{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--yv-blue),var(--yv-green),var(--yv-yellow),var(--yv-red))}
+@media(max-width:600px){.countdown{grid-template-columns:repeat(2,minmax(90px,120px));gap:10px}.launch-title{font-size:42px}.launch-date{letter-spacing:.12em}}
 </style>
 </head>
 <body>
 <header><div class="wrap"><nav>
-<a class="brand" href="#"><span>Y</span><i>V</i></a>
-<div class="nav"><a href="#s01">PROFILE</a><a href="#s03">CAPABILITY</a><a href="evidence.html">EVIDENCE</a><a href="#s11">RESEARCH</a><a href="#s16">VALIDATION</a><a href="#s20">BROKER</a></div>
+<a class="brand" href="#">YV <i>ALGO</i></a>
+<div class="nav"><a href="#s01">PROFILE</a><a href="#s03">CAPABILITY</a><a href="#evidence-library">EVIDENCE</a><a href="#s11">RESEARCH</a><a href="#s16">VALIDATION</a><a href="#s20">BROKER</a></div>
 <a class="navbtn" href="#s28">TECHNICAL DISCUSSION</a>
 </nav></div></header>
 <main>
-<section class="hero">
-  <div class="wrap">
-    <div class="launch-wrap">
-      <div class="launch-kicker">YV · STRATEGY AUDIT ENGINE</div>
-      <h1 class="launch-title">LAUNCHING <span class="soon">SOON</span></h1>
-      <div class="launch-date">11 OCTOBER 2026 · 00:00 IST</div>
-
-      <div class="countdown" aria-label="Countdown to launch">
-        <div class="time-box"><div class="time-value" id="days">00</div><div class="time-label">DAYS</div></div>
-        <div class="time-box"><div class="time-value" id="hours">00</div><div class="time-label">HOURS</div></div>
-        <div class="time-box"><div class="time-value" id="minutes">00</div><div class="time-label">MINUTES</div></div>
-        <div class="time-box"><div class="time-value" id="seconds">00</div><div class="time-label">SECONDS</div></div>
-      </div>
-
-      <div class="launch-status">
-        <span class="status-dot"></span>
-        SYSTEM INITIALIZATION IN PROGRESS
-      </div>
-      <div class="launch-line"></div>
-    </div>
-  </div>
-  <div class="hero-accent"></div>
-</section>
+<section class="hero"><div class="wrap">
+<div class="launch-wrap">
+<div class="launch-kicker">YV · STRATEGY AUDIT ENGINE</div>
+<h1 class="launch-title">LAUNCHING <span class="soon">SOON</span></h1>
+<div class="launch-date">11 OCTOBER 2026 · 00:00 IST</div>
+<div class="countdown" aria-label="Countdown to launch">
+<div class="time-box"><div class="time-value" id="days">00</div><div class="time-label">DAYS</div></div>
+<div class="time-box"><div class="time-value" id="hours">00</div><div class="time-label">HOURS</div></div>
+<div class="time-box"><div class="time-value" id="minutes">00</div><div class="time-label">MINUTES</div></div>
+<div class="time-box"><div class="time-value" id="seconds">00</div><div class="time-label">SECONDS</div></div>
+</div>
+<div class="launch-status"><span class="status-dot"></span>SYSTEM INITIALIZATION IN PROGRESS</div>
+<div class="launch-line"></div>
+</div></div><div class="hero-accent"></div></section>
 
 <section class="slide" id="s01">
   <div class="slide-no">01 / 28</div>
@@ -125,7 +92,7 @@ header{background:rgba(246,243,234,.94);border-bottom:1px solid rgba(36,99,212,.
   <div class="slide-no">03 / 28</div>
   <h2>What YV Builds</h2>
   <div class="cards">
-    <article><span>01</span><h3>Strategy / EA Families</h3><p>Trend, breakout, mean reversion, momentum, SMC, Oscillator Signal and market-behaviour variants.</p></article>
+    <article><span>01</span><h3>Strategy / EA Families</h3><p>Trend, breakout, mean reversion, momentum, SMC, QQE and market-behaviour variants.</p></article>
     <article><span>02</span><h3>Risk Engines</h3><p>Position sizing, SL/TP, drawdown controls, recovery behaviour and exposure constraints.</p></article>
     <article><span>03</span><h3>Execution Layer</h3><p>MT5/MQL5, broker execution behaviour, spread/session handling and state management.</p></article>
   </div>
@@ -158,6 +125,29 @@ header{background:rgba(246,243,234,.94);border-bottom:1px solid rgba(36,99,212,.
   </div>
 </section>
 
+<section class="slide" id="evidence-library">
+  <div class="slide-no">EVIDENCE LIBRARY</div>
+  <h2>Authentic Backtest & Research Evidence</h2>
+  <div class="note">Selected screenshots and reports from the YV research archive. Images are presented as evidence of testing and development, not as a promise of future performance.</div>
+  <div class="evidence-grid">
+    <a class="evidence-item" href="assets/evidence/evidence-01.jpg" target="_blank"><img src="assets/evidence/evidence-01.jpg" alt="YV evidence 01"><p>EVIDENCE 01</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-02.jpg" target="_blank"><img src="assets/evidence/evidence-02.jpg" alt="YV evidence 02"><p>EVIDENCE 02</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-03.jpg" target="_blank"><img src="assets/evidence/evidence-03.jpg" alt="YV evidence 03"><p>EVIDENCE 03</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-04.jpg" target="_blank"><img src="assets/evidence/evidence-04.jpg" alt="YV evidence 04"><p>EVIDENCE 04</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-05.jpg" target="_blank"><img src="assets/evidence/evidence-05.jpg" alt="YV evidence 05"><p>EVIDENCE 05</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-06.jpg" target="_blank"><img src="assets/evidence/evidence-06.jpg" alt="YV evidence 06"><p>EVIDENCE 06</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-07.jpg" target="_blank"><img src="assets/evidence/evidence-07.jpg" alt="YV evidence 07"><p>EVIDENCE 07</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-08.jpg" target="_blank"><img src="assets/evidence/evidence-08.jpg" alt="YV evidence 08"><p>EVIDENCE 08</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-09.jpg" target="_blank"><img src="assets/evidence/evidence-09.jpg" alt="YV evidence 09"><p>EVIDENCE 09</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-10.jpg" target="_blank"><img src="assets/evidence/evidence-10.jpg" alt="YV evidence 10"><p>EVIDENCE 10</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-11.jpg" target="_blank"><img src="assets/evidence/evidence-11.jpg" alt="YV evidence 11"><p>EVIDENCE 11</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-12.jpg" target="_blank"><img src="assets/evidence/evidence-12.jpg" alt="YV evidence 12"><p>EVIDENCE 12</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-13.jpg" target="_blank"><img src="assets/evidence/evidence-13.jpg" alt="YV evidence 13"><p>EVIDENCE 13</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-14.jpg" target="_blank"><img src="assets/evidence/evidence-14.jpg" alt="YV evidence 14"><p>EVIDENCE 14</p></a>
+    <a class="evidence-item" href="assets/evidence/evidence-15.jpg" target="_blank"><img src="assets/evidence/evidence-15.jpg" alt="YV evidence 15"><p>EVIDENCE 15</p></a>
+  </div>
+</section>
+
 <section class="slide" id="s07">
   <div class="slide-no">07 / 28</div>
   <h2>Failure / Weak-Candidate Evidence</h2>
@@ -171,9 +161,9 @@ header{background:rgba(246,243,234,.94);border-bottom:1px solid rgba(36,99,212,.
   <div class="slide-no">08 / 28</div>
   <h2>Selected Tester Metrics</h2>
   <div class="cards">
-    <article class="card-positive"><span>01</span><h3>XAUUSD H1</h3><p><span class="positive">+2034.13 net profit</span> · PF 2.16 · 324 trades · <span class="negative">Equity DD 27.76%</span>.</p></article>
-    <article class="card-positive"><span>02</span><h3>XAUUSD M5</h3><p><span class="positive">+2383.73 net profit</span> · PF 1.38 · 866 trades · <span class="negative">Equity DD 33.00%</span>.</p></article>
-    <article class="card-positive"><span>03</span><h3>XAUUSD M15</h3><p><span class="positive">+972.81 net profit</span> · PF 1.11 · 1317 trades · <span class="negative">Equity DD 25.18%</span>.</p></article>
+    <article><span>01</span><h3>XAUUSD H1</h3><p>+2034.13 net profit · PF 2.16 · 324 trades · Equity DD 27.76%.</p></article>
+    <article><span>02</span><h3>XAUUSD M5</h3><p>+2383.73 net profit · PF 1.38 · 866 trades · Equity DD 33.00%.</p></article>
+    <article><span>03</span><h3>XAUUSD M15</h3><p>+972.81 net profit · PF 1.11 · 1317 trades · Equity DD 25.18%.</p></article>
   </div>
 </section>
 <section class="slide" id="s09">
@@ -209,7 +199,7 @@ header{background:rgba(246,243,234,.94);border-bottom:1px solid rgba(36,99,212,.
   <div class="cards">
     <article><span>01</span><h3>Chandelier / Trend Flip</h3><p>Trend-state changes, ATR bands and directional transitions.</p></article>
     <article><span>02</span><h3>EMA / VWAP Pullback</h3><p>Trend alignment with pullback / execution conditions.</p></article>
-    <article><span>03</span><h3>Oscillator Signal / Oscillator</h3><p>Signal-driven execution with fixed-risk experiments.</p></article>
+    <article><span>03</span><h3>QQE / Oscillator</h3><p>Signal-driven execution with fixed-risk experiments.</p></article>
   </div>
 </section>
 <section class="slide" id="s13">
@@ -357,54 +347,9 @@ header{background:rgba(246,243,234,.94);border-bottom:1px solid rgba(36,99,212,.
   </div>
 </section>
 </main>
-<footer><div class="wrap footer"><div><strong>YV</strong><br>Quantitative Research · Algorithmic Trading · Execution Engineering</div><div>© 2026 YV · Evidence-led technical development.</div></div></footer>
+<footer><div class="wrap footer"><div><strong>YV ALGO</strong><br>Quantitative Research · Algorithmic Trading · Execution Engineering</div><div>© 2026 YV · Evidence-led technical development.</div></div></footer>
 
 <script>
-(function(){
-  // Launch target: 11 October 2026 at 00:00:00 India Standard Time (UTC+05:30).
-  const target = new Date("2026-10-11T00:00:00+05:30").getTime();
-  const els = {
-    d: document.getElementById("days"),
-    h: document.getElementById("hours"),
-    m: document.getElementById("minutes"),
-    s: document.getElementById("seconds")
-  };
-
-  function pad(n){ return String(Math.max(0,n)).padStart(2,"0"); }
-
-  function tick(){
-    const now = Date.now();
-    let diff = target - now;
-
-    if(diff <= 0){
-      els.d.textContent = "00";
-      els.h.textContent = "00";
-      els.m.textContent = "00";
-      els.s.textContent = "00";
-      return;
-    }
-
-    const day = 86400000, hour = 3600000, min = 60000;
-    const d = Math.floor(diff/day); diff %= day;
-    const h = Math.floor(diff/hour); diff %= hour;
-    const m = Math.floor(diff/min);
-    const s = Math.floor((diff % min)/1000);
-
-    els.d.textContent = pad(d);
-    els.h.textContent = pad(h);
-    els.m.textContent = pad(m);
-    els.s.textContent = pad(s);
-  }
-
-  tick();
-  setInterval(tick,1000);
-})();
+(function(){const target=new Date("2026-10-11T00:00:00+05:30").getTime();function tick(){let d=target-Date.now();if(d<0)d=0;const s=Math.floor(d/1000);const days=Math.floor(s/86400),hours=Math.floor(s%86400/3600),minutes=Math.floor(s%3600/60),seconds=s%60;document.getElementById("days").textContent=String(days).padStart(2,"0");document.getElementById("hours").textContent=String(hours).padStart(2,"0");document.getElementById("minutes").textContent=String(minutes).padStart(2,"0");document.getElementById("seconds").textContent=String(seconds).padStart(2,"0")}tick();setInterval(tick,1000)})();
 </script>
-
 </body></html>
-
-<style>
-article h3{color:#f2f5f8}
-article span{color:#4f8cff}
-article p{color:var(--muted)}
-</style>
