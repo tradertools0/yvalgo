@@ -36,6 +36,40 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
 .card-positive h3,.card-positive span{color:#35d07f !important}
 .card-negative h3,.card-negative span{color:#ff5b5b !important}
 .card-alert h3,.card-alert span{color:#ff5b5b !important}
+
+/* YV Launch Countdown — home hero only */
+:root{
+  --yv-off:#f6f3ea;
+  --yv-blue:#2463d4;
+  --yv-red:#e64b4b;
+  --yv-green:#28a56a;
+  --yv-yellow:#e4b93f;
+}
+body{background:var(--yv-off);color:#182230}
+header{background:rgba(246,243,234,.94);border-bottom:1px solid rgba(36,99,212,.16)}
+.hero{background:var(--yv-off);position:relative;overflow:hidden;min-height:88vh}
+.hero .wrap{width:min(calc(100% - 48px),var(--max));}
+.launch-wrap{min-height:64vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
+.launch-kicker{font:500 11px "IBM Plex Mono";letter-spacing:.24em;color:var(--yv-blue);margin-bottom:18px}
+.launch-title{font:600 clamp(42px,8vw,88px) Orbitron;line-height:.98;letter-spacing:.06em;text-transform:uppercase;color:#182230}
+.launch-title .soon{color:var(--yv-red)}
+.launch-date{margin-top:18px;font:500 12px "IBM Plex Mono";letter-spacing:.22em;color:#596779}
+.countdown{display:grid;grid-template-columns:repeat(4,minmax(78px,120px));gap:12px;margin-top:34px}
+.time-box{background:rgba(255,255,255,.62);border:1px solid rgba(36,99,212,.20);border-top:3px solid var(--yv-blue);padding:16px 10px 12px;box-shadow:0 12px 30px rgba(31,52,82,.08)}
+.time-box:nth-child(2){border-top-color:var(--yv-green)}
+.time-box:nth-child(3){border-top-color:var(--yv-yellow)}
+.time-box:nth-child(4){border-top-color:var(--yv-red)}
+.time-value{font:600 clamp(28px,5vw,44px) "IBM Plex Mono";line-height:1;color:#182230}
+.time-label{margin-top:8px;font:500 9px "IBM Plex Mono";letter-spacing:.16em;color:#728096}
+.launch-status{margin-top:25px;display:inline-flex;align-items:center;gap:9px;font:500 10px "IBM Plex Mono";letter-spacing:.12em;color:#526173}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--yv-green);box-shadow:0 0 0 5px rgba(40,165,106,.10)}
+.launch-line{width:min(420px,75%);height:1px;background:linear-gradient(90deg,transparent,var(--yv-blue),var(--yv-yellow),var(--yv-red),transparent);margin-top:30px;opacity:.7}
+.hero-accent{position:absolute;inset:auto 0 0;height:5px;background:linear-gradient(90deg,var(--yv-blue) 0 25%,var(--yv-red) 25% 50%,var(--yv-green) 50% 75%,var(--yv-yellow) 75% 100%);opacity:.9}
+@media(max-width:600px){
+  .countdown{grid-template-columns:repeat(2,minmax(90px,1fr));width:min(360px,100%)}
+  .launch-wrap{min-height:68vh}
+}
+
 </style>
 </head>
 <body>
@@ -45,13 +79,29 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
 <a class="navbtn" href="#s28">TECHNICAL DISCUSSION</a>
 </nav></div></header>
 <main>
-<section class="hero"><div class="wrap">
-<div class="kicker">QUANTITATIVE RESEARCH · ALGORITHMIC TRADING · EXECUTION ENGINEERING</div>
-<h1>Evidence first.<br><em>Engineering second.</em></h1>
-<p class="lead">YV — a research-to-execution workflow built around measurable evidence, systematic development, controlled testing and broker-aware validation.</p>
-<div class="buttons"><a class="btn primary" href="#s03">EXPLORE CAPABILITY</a><a class="btn" href="#s20">BROKER COLLABORATION</a></div>
+<section class="hero">
+  <div class="wrap">
+    <div class="launch-wrap">
+      <div class="launch-kicker">YV · STRATEGY AUDIT ENGINE</div>
+      <h1 class="launch-title">LAUNCHING <span class="soon">SOON</span></h1>
+      <div class="launch-date">11 OCTOBER 2026 · 00:00 IST</div>
 
-</div></section>
+      <div class="countdown" aria-label="Countdown to launch">
+        <div class="time-box"><div class="time-value" id="days">00</div><div class="time-label">DAYS</div></div>
+        <div class="time-box"><div class="time-value" id="hours">00</div><div class="time-label">HOURS</div></div>
+        <div class="time-box"><div class="time-value" id="minutes">00</div><div class="time-label">MINUTES</div></div>
+        <div class="time-box"><div class="time-value" id="seconds">00</div><div class="time-label">SECONDS</div></div>
+      </div>
+
+      <div class="launch-status">
+        <span class="status-dot"></span>
+        SYSTEM INITIALIZATION IN PROGRESS
+      </div>
+      <div class="launch-line"></div>
+    </div>
+  </div>
+  <div class="hero-accent"></div>
+</section>
 
 <section class="slide" id="s01">
   <div class="slide-no">01 / 28</div>
@@ -308,6 +358,49 @@ h1{font:600 clamp(42px,7vw,82px) Orbitron;line-height:1.02;letter-spacing:-.045e
 </section>
 </main>
 <footer><div class="wrap footer"><div><strong>YV</strong><br>Quantitative Research · Algorithmic Trading · Execution Engineering</div><div>© 2026 YV · Evidence-led technical development.</div></div></footer>
+
+<script>
+(function(){
+  // Launch target: 11 October 2026 at 00:00:00 India Standard Time (UTC+05:30).
+  const target = new Date("2026-10-11T00:00:00+05:30").getTime();
+  const els = {
+    d: document.getElementById("days"),
+    h: document.getElementById("hours"),
+    m: document.getElementById("minutes"),
+    s: document.getElementById("seconds")
+  };
+
+  function pad(n){ return String(Math.max(0,n)).padStart(2,"0"); }
+
+  function tick(){
+    const now = Date.now();
+    let diff = target - now;
+
+    if(diff <= 0){
+      els.d.textContent = "00";
+      els.h.textContent = "00";
+      els.m.textContent = "00";
+      els.s.textContent = "00";
+      return;
+    }
+
+    const day = 86400000, hour = 3600000, min = 60000;
+    const d = Math.floor(diff/day); diff %= day;
+    const h = Math.floor(diff/hour); diff %= hour;
+    const m = Math.floor(diff/min);
+    const s = Math.floor((diff % min)/1000);
+
+    els.d.textContent = pad(d);
+    els.h.textContent = pad(h);
+    els.m.textContent = pad(m);
+    els.s.textContent = pad(s);
+  }
+
+  tick();
+  setInterval(tick,1000);
+})();
+</script>
+
 </body></html>
 
 <style>
