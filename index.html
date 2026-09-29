@@ -47,6 +47,83 @@ header{background:rgba(246,243,234,.94);border-bottom:1px solid rgba(36,99,212,.
 .hero-accent{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--yv-blue),var(--yv-green),var(--yv-yellow),var(--yv-red))}
 @media(max-width:600px){.countdown{grid-template-columns:repeat(2,minmax(90px,120px));gap:10px}.launch-title{font-size:42px}.launch-date{letter-spacing:.12em}}
 </style>
+
+<style id="yv-final-light-theme">
+/* YV FINAL LIGHT THEME — unified across the full website */
+:root{
+  --bg:#F6F3EA;
+  --panel:#FFFFFF;
+  --line:#D9E0E8;
+  --text:#17243A;
+  --muted:#617086;
+  --blue:#2563D8;
+  --teal:#2FA36B;
+  --gold:#D6A92C;
+  --red:#E25555;
+  --yellow:#E1B83D;
+  --soft-blue:#EAF1FF;
+  --soft-green:#EAF7F0;
+  --soft-red:#FCEEEE;
+  --soft-yellow:#FFF7DE;
+}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--text)}
+a{color:inherit}
+header{background:rgba(246,243,234,.96);border-bottom:1px solid var(--line);box-shadow:0 2px 14px rgba(23,36,58,.04)}
+.brand{color:var(--text)}
+.brand span{color:var(--blue)}
+.brand i{color:var(--blue)!important}
+.nav{color:#6A778A}
+.nav a:hover{color:var(--blue)}
+.navbtn{border-color:var(--blue);color:var(--blue)}
+.navbtn:hover{background:var(--soft-blue)}
+.hero{background:var(--bg);border-bottom:1px solid var(--line)}
+.kicker,.launch-kicker{color:var(--blue)}
+h1,h2{color:var(--text)}
+h1 em{color:var(--blue)}
+.lead{color:var(--muted)}
+.btn{border-color:var(--line);color:var(--text);background:#fff}
+.btn:hover{border-color:var(--blue);color:var(--blue)}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.slide{border-bottom-color:var(--line)}
+.slide-no{color:var(--blue)}
+.cards{background:var(--line);border-color:var(--line);box-shadow:0 8px 24px rgba(23,36,58,.045)}
+article{background:var(--panel);color:var(--text);position:relative}
+article:nth-child(1){border-top:3px solid var(--blue)}
+article:nth-child(2){border-top:3px solid var(--green,var(--teal))}
+article:nth-child(3){border-top:3px solid var(--yellow)}
+article span{color:var(--blue)}
+article h3{color:var(--text)!important}
+article p{color:var(--muted)}
+.note{border-left-color:var(--blue);background:var(--soft-blue);color:var(--muted)}
+.evidence-item{background:#fff;border-color:var(--line);box-shadow:0 8px 22px rgba(23,36,58,.05)}
+.evidence-item:hover{border-color:var(--blue);transform:translateY(-2px);transition:.2s ease}
+.evidence-item p{color:var(--muted)}
+.positive,.positive *,.card-positive h3,.card-positive span{color:var(--teal)!important}
+.negative,.negative *,.alert,.alert *,.card-negative h3,.card-negative span,.card-alert h3,.card-alert span{color:var(--red)!important}
+.neutral,.neutral *{color:var(--text)!important}
+.footer{color:var(--muted)}
+.footer strong{color:var(--text)}
+
+/* Launch area keeps the same YV palette */
+.launch-title{color:var(--text)}
+.launch-title .soon{color:var(--red)}
+.launch-date{color:var(--muted)}
+.time-box{background:rgba(255,255,255,.86);border-color:var(--line);box-shadow:0 12px 30px rgba(23,36,58,.07)}
+.time-box:nth-child(1){border-top-color:var(--blue)}
+.time-box:nth-child(2){border-top-color:var(--teal)}
+.time-box:nth-child(3){border-top-color:var(--yellow)}
+.time-box:nth-child(4){border-top-color:var(--red)}
+.time-value{color:var(--text)}
+.time-label{color:var(--muted)}
+.launch-status{color:var(--teal)}
+.launch-line{background:linear-gradient(90deg,var(--blue),var(--teal),var(--yellow),var(--red))}
+.launch-orb{background:var(--soft-blue);border-color:rgba(37,99,216,.18)}
+
+@media(max-width:600px){
+  article{min-height:170px}
+}
+</style>
 </head>
 <body>
 <header><div class="wrap"><nav>
